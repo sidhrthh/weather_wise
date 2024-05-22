@@ -1,71 +1,33 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import axios from "axios";
-import { useState } from "react";
-import Weather from "@/components/Weather";
-import  {Loading}  from "@/components/Loading";
+import useWeather from '@/hooks/useWeather';
+import WeatherForm from '@/components/WeatherFrom'; // Corrected typo in component import
+import BackgroundImage from '@/components/BackgroundImage';
+import Loading from '@/components/Loading';
+import Weather from '@/components/Weather';
+import Error from '@/components/Error';
+import { useState } from 'react';
 
 export default function Home() {
-  const [city, setCity] = useState('');
-  const [weather, setWeather] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  const { weather, loading, error, fetchWeather } = useWeather();
+  const [weatherData, setWeatherData] = useState<any>(null);
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`;
-
-  const fetchWeather = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await axios.get(url);
-      setWeather(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error fetching weather data:", error);
-    }
-    setCity('');
-    setLoading(false);
+  const handleClear = () => {
+    setWeatherData(null);
+    window.location.reload(); // Reload the page
   };
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <div>
-      <button onClick={fetchWeather} className="border-2"> Fetch the Weather</button>
-
-      <div className="absolute top-0 left-0 right-0 bottom-0 bg-black/55 z-[1]" />
-      <Image
-        src="https://images.pexels.com/photos/907485/pexels-photo-907485.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt="background image"
-        layout="fill"
-      />
-
-      <div className='relative flex justify-between items-center max-w-[500px] w-full m-auto pt-4 px-4 text-white z-10'>
-        <form
-          onSubmit={fetchWeather}
-          className='flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-300 text-white rounded-2xl'
-        >
-          <div>
-            <input
-              onChange={(e) => setCity(e.target.value)}
-              className='bg-transparent border-none text-white focus:outline-none text-2xl'
-              type='text'
-              placeholder='Search city'
-            />
-          </div>
-          <button type="submit">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-</svg>
-
-          </button>
-        </form>
+      {loading && <Loading />}
+      <BackgroundImage />
+      <div className="relative flex justify-between items-center max-w-[500px] w-full m-auto pt-4 px-4 text-white z-10">
+        <WeatherForm fetchWeather={fetchWeather} />
+        <button onClick={handleClear} className="ml-4 px-4 py-2 bg-blue-500 text-white rounded">Clear</button>
       </div>
-
-      {/* Weather */}
-      { weather && weather.main && <Weather data={weather} />}
+      <Error message={error} />
+      {weather && <Weather data={weather} />}
+     
     </div>
   );
 }
