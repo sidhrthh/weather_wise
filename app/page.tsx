@@ -22,7 +22,6 @@ export default function Home() {
       <div className="relative flex justify-between items-center max-w-[500px] w-full m-auto pt-4 px-4 text-white z-10">
         <WeatherForm fetchWeather={fetchWeather} />
         <ClearPage setWeatherData={setWeatherData} />
-        
       </div>
       <Error message={error} />
       {weather && <Weather data={weather} />}

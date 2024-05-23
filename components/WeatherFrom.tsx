@@ -23,7 +23,7 @@ const WeatherForm = ({ fetchWeather }: WeatherFormProps) => {
       <input
         onChange={(e) => setCity(e.target.value)}
         value={city}
-        className="bg-transparent border-none text-white focus:outline-none text-2xl"
+        className="bg-transparent border-none text-white focus:outline-none text-xl"
         type="text"
         placeholder="Search city"
         aria-label="Search city"

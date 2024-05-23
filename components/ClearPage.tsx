@@ -12,6 +12,6 @@ export default function ClearPage({setWeatherData} : ClearProps){
       };
 
     return (
-        <button onClick={handleClear} className="ml-4 px-4 py-2 bg-blue-500 text-white rounded">Clear</button>
+        <button onClick={handleClear} className="text-xl ml-4 px-4 py-2 bg-transparent text-white rounded">Clear</button>
     )
 }
