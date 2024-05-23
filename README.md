@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Weather Wise 
 
-## Getting Started
+This is a simple weather application built using Next.js and TypeScript. It fetches weather data from the OpenWeatherMap API and displays it based on user input.
 
-First, run the development server:
+## Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Next.js**
+: A React framework for server-rendered applications.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**TypeScript**
+: A statically typed superset of JavaScript.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Axios**
+: For making HTTP requests.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**OpenWeatherMap**
+:For fetching weather data.
 
-## Learn More
+## Preview & Demo 
+Check out the live preview and demo of the app here.
+[Click here](https://weather-wise-ruddy.vercel.app/)
 
-To learn more about Next.js, take a look at the following resources:
+![Project Screenshot](public/image1.png)
+![Project Screenshot](public/image2.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1.Enter a city name in the search field.
 
-## Deploy on Vercel
+2.Click the "Fetch the Weather" button to fetch weather data.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3.Click the "Clear" button to clear the weather data
